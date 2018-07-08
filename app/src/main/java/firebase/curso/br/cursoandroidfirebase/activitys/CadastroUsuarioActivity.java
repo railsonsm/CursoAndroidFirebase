@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,14 +28,14 @@ import firebase.curso.br.cursoandroidfirebase.dao.ConfiguracaoFirebase;
 import firebase.curso.br.cursoandroidfirebase.helper.Preferencias;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
-    private EditText email;
-    private EditText senha1;
-    private EditText senha2;
-    private EditText nome;
+    private BootstrapEditText email;
+    private BootstrapEditText senha1;
+    private BootstrapEditText senha2;
+    private BootstrapEditText nome;
     private RadioButton rbAdmin;
     private RadioButton rbAtendente;
-    private Button btnCadastrar;
-    private Button btnCancelar;
+    private BootstrapButton btnCadastrar;
+    private BootstrapButton btnCancelar;
     private FirebaseAuth autenticacao;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -43,12 +45,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
-        email = (EditText) findViewById(R.id.edtCadEmail);
-        senha1 = (EditText) findViewById(R.id.edtCadSenha1);
-        senha2 = (EditText) findViewById(R.id.edtCadSenha2);
-        nome = (EditText) findViewById(R.id.edtCadNome);
-        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
-        btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        email = (BootstrapEditText) findViewById(R.id.edtCadEmail);
+        senha1 = (BootstrapEditText) findViewById(R.id.edtCadSenha1);
+        senha2 = (BootstrapEditText) findViewById(R.id.edtCadSenha2);
+        nome = (BootstrapEditText) findViewById(R.id.edtCadNome);
+        btnCadastrar = (BootstrapButton) findViewById(R.id.btnCadastrar);
+        btnCancelar = (BootstrapButton) findViewById(R.id.btnCancelar);
         rbAdmin = (RadioButton) findViewById(R.id.rbAdmin);
         rbAtendente = (RadioButton) findViewById(R.id.rbAtend);
 

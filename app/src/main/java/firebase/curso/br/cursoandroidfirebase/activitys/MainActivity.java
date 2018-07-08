@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,9 +27,9 @@ import firebase.curso.br.cursoandroidfirebase.helper.Preferencias;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
-    private EditText edtEmail;
-    private EditText edtSenha;
-    private Button btnLogin;
+    private BootstrapEditText edtEmail;
+    private BootstrapEditText edtSenha;
+    private BootstrapButton btnLogin;
     private Usuario usuario;
 
     @Override
@@ -37,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         permissao();
 
-        edtEmail = (EditText) findViewById(R.id.editEmail);
-        edtSenha = (EditText) findViewById(R.id.editSenha);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
+        edtEmail = (BootstrapEditText) findViewById(R.id.editEmail);
+        edtSenha = (BootstrapEditText) findViewById(R.id.editSenha);
+        btnLogin = (BootstrapButton) findViewById(R.id.btnLogin);
 
         if(usuarioLogado()){
             startActivity(new Intent(MainActivity.this, PrincipalActivity.class));

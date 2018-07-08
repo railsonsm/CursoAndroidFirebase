@@ -3,71 +3,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activitys.CadastroUsuarioActivity"
     android:orientation="vertical"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:background="@drawable/backgroud"
     android:gravity="center">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="CADASTRO DE USUÁRIO"/>
+        android:text="CADASTRO DE USUÁRIO"
+        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/edtCadEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite o e-mail"
-        android:inputType="textEmailAddress"/>
 
-    <EditText
-        android:id="@+id/edtCadSenha1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Digite a senha"
-        android:inputType="textPassword"/>
 
-    <EditText
-        android:id="@+id/edtCadSenha2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirmar a senha"
-        android:inputType="textPassword"/>
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o e-mail"
+            android:inputType="textEmailAddress"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
 
-    <EditText
-        android:id="@+id/edtCadNome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome" />
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadSenha1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a senha"
+            android:inputType="textPassword"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadSenha2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar a senha"
+            android:inputType="textPassword"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:inputType="textPassword"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/rbAdmin"
+            android:textColor="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Administrador"/>
         <RadioButton
             android:id="@+id/rbAtend"
+            android:textColor="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Atendente"/>
     </RadioGroup>
 
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CADASTRAR"/>
 
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CANCELAR"/>
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CADASTRAR"
+            app:bootstrapBrand="success"
+            app:bootstrapSize="xl"
+            app:buttonMode="regular"
+            app:showOutline="false"
+            app:roundedCorners="true"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CANCELAR"
+            app:bootstrapBrand="danger"
+            app:bootstrapSize="xl"
+            app:buttonMode="regular"
+            android:layout_marginTop="10dp"
+            app:showOutline="false"
+            app:roundedCorners="true"
+            />
+
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

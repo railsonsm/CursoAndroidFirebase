@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,8 +32,8 @@ import firebase.curso.br.cursoandroidfirebase.R;
 import firebase.curso.br.cursoandroidfirebase.dao.ConfiguracaoFirebase;
 
 public class UploadFotoActivity extends AppCompatActivity {
-    private Button btnUpload;
-    private Button btnCancelar;
+    private BootstrapButton btnUpload;
+    private BootstrapButton btnCancelar;
     private StorageReference storageReference;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -68,8 +69,8 @@ public class UploadFotoActivity extends AppCompatActivity {
             }
         });
 
-        btnUpload = (Button) findViewById(R.id.btnUpload);
-        btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        btnUpload = (BootstrapButton) findViewById(R.id.btnUpload);
+        btnCancelar = (BootstrapButton) findViewById(R.id.btnCancelar);
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,7 @@ public class UploadFotoActivity extends AppCompatActivity {
 
     private void carregaImagemPadrao(){
         FirebaseStorage storage  = FirebaseStorage.getInstance();
-        final StorageReference storageReference = storage.getReferenceFromUrl("gs://estudo-26d20.appspot.com/fotoPerfil.png");
+        final StorageReference storageReference = storage.getReferenceFromUrl("gs://estudo-26d20.appspot.com/fotoPerfilUsuario/" +emailUsuarioLogado + ".jpg");
 
         //DisplayMetrics displayMetrics  = getResources().getDisplayMetrics()
 
@@ -126,6 +127,7 @@ public class UploadFotoActivity extends AppCompatActivity {
 
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 carregaImagemPadrao();
+                finish();
             }
         });
     }

@@ -5,38 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activitys.MainActivity"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:background="@drawable/backgroud"
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:textSize="25sp"
-        android:textAlignment="center" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="digite o email"
-        android:inputType="textEmailAddress"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="16dp">
 
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="digite a senha"
-        android:inputType="textPassword"/>
+            <ImageView
+                android:src="@drawable/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:text="LOGAR"
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="digite o email"
+            android:inputType="textEmailAddress"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/editSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="digite a senha"
+                android:inputType="textPassword"
+                app:bootstrapSize="xl"
+                app:roundedCorners="true"
+                android:layout_marginTop="10dp"
+                app:bootstrapBrand="info"
+                />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:text="LOGAR"
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="xl"
+                app:buttonMode="regular"
+                app:showOutline="false"
+                android:layout_marginTop="10dp"
+                app:roundedCorners="true"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

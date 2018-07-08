@@ -40,6 +40,9 @@ dependencies {
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //bootstrap
+    implementation 'com.beardedhen:androidbootstrap:2.3.2'
 }
 
 

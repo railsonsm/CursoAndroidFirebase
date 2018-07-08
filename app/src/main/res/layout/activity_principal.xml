@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".activitys.PrincipalActivity"
     android:orientation="vertical"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="16dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:background="@drawable/backgroud"
     android:gravity="center">
 
     <TextView
         android:id="@+id/txtTipoUsuario"
         android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:textSize="35sp"/>
 
