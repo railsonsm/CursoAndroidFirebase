@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 import firebase.curso.br.cursoandroidfirebase.R;
 import firebase.curso.br.cursoandroidfirebase.classes.Usuario;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private BootstrapEditText edtSenha;
     private BootstrapButton btnLogin;
     private Usuario usuario;
+    private TextView txtAbreCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         permissao();
-
+        txtAbreCadastro = (TextView) findViewById(R.id.txtAbreCadastro);
         edtEmail = (BootstrapEditText) findViewById(R.id.editEmail);
         edtSenha = (BootstrapEditText) findViewById(R.id.editSenha);
         btnLogin = (BootstrapButton) findViewById(R.id.btnLogin);
@@ -63,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        txtAbreCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CadastroUsuarioComumActivity.class));
+                finish();
+            }
+        });
     }
 
     private void validarLogin(){

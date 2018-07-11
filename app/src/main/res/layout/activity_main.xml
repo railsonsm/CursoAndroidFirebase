@@ -61,6 +61,13 @@
                 android:layout_marginTop="10dp"
                 app:roundedCorners="true"
                 />
+            <TextView
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:id="@+id/txtAbreCadastro"
+                android:text="Não tem cadastro? Clique aqui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
