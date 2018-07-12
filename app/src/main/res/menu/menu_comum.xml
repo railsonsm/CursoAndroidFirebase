@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_add_usuario"
+        android:id="@+id/action_fazerPedidos"
         android:orderInCategory="100"
-        android:title="Add Usuario"
+        android:title="Fazer Pedidos"
         app:showAsAction="collapseActionView"/>
 
     <item
-        android:id="@+id/action_cardapio"
+        android:id="@+id/action_cardapioComum"
         android:orderInCategory="100"
         android:title="Cardapio"
         app:showAsAction="collapseActionView"/>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitys.CadastroUsuarioComumActivity"
+    android:orientation="vertical"
+    android:background="@drawable/backgroud"
+    android:gravity="center">>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="CADASTRO"
+            android:textStyle="bold"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadCpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CPF"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadRua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rua"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadNumero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o e-mail"
+            android:inputType="textEmailAddress"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadSenha1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a senha"
+            android:inputType="textPassword"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/edtCadSenha2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar a senha"
+            android:inputType="textPassword"
+            app:bootstrapSize="xl"
+            app:roundedCorners="true"
+            android:layout_marginTop="10dp"
+            app:bootstrapBrand="info"
+            />
+
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rbFeminino"
+                android:textColor="#FFFFFF"
+                android:checked="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Feminino"/>
+            <RadioButton
+                android:id="@+id/rbMasculino"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Masculino"/>
+        </RadioGroup>
+
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CADASTRAR"
+            app:bootstrapBrand="success"
+            app:bootstrapSize="xl"
+            app:buttonMode="regular"
+            app:showOutline="false"
+            app:roundedCorners="true"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CANCELAR"
+            app:bootstrapBrand="danger"
+            app:bootstrapSize="xl"
+            app:buttonMode="regular"
+            android:layout_marginTop="10dp"
+            app:showOutline="false"
+            app:roundedCorners="true"
+            />
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

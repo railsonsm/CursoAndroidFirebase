@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import firebase.curso.br.cursoandroidfirebase.R;
+import firebase.curso.br.cursoandroidfirebase.classes.Cardapio;
 import firebase.curso.br.cursoandroidfirebase.classes.Usuario;
 
 public class PrincipalActivity extends AppCompatActivity {
@@ -30,6 +33,8 @@ public class PrincipalActivity extends AppCompatActivity {
     private String tipoUsuarioEmail;
     private String nomeUsuarioEmail;
     private Menu menu1;
+    private LinearLayout linearLayoutAddProdutos;
+    private LinearLayout totalVendido;
 
 
     @Override
@@ -40,6 +45,15 @@ public class PrincipalActivity extends AppCompatActivity {
         autenticacao = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        linearLayoutAddProdutos = (LinearLayout) findViewById(R.id.linearAddProdutos);
+        totalVendido = (LinearLayout) findViewById(R.id.totalVendas);
+
+        linearLayoutAddProdutos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirTelaCadastroProduto();
+            }
+        });
 
 
     }
@@ -47,41 +61,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
-        this.menu1 = menu;
-
-        tipoUsuario = (TextView) findViewById(R.id.txtTipoUsuario);
-        String email = "";
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            for (UserInfo profile : user.getProviderData()) {
-                email = profile.getEmail();
-            }
-        }
-
-        databaseReference.child("usuarios").orderByChild("email").equalTo(email.toString())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postStapshots: dataSnapshot.getChildren()){
-                            tipoUsuarioEmail = postStapshots.child("tipoUsuario").getValue().toString();
-                            nomeUsuarioEmail = postStapshots.child("nome").getValue().toString();
-                            tipoUsuario.setText(tipoUsuarioEmail.toString()+ " " + nomeUsuarioEmail);
-                            menu1.clear();
-                            if(tipoUsuarioEmail.equals("Administrador")){
-                                getMenuInflater().inflate(R.menu.menu_admin, menu1);
-                            }else if(tipoUsuarioEmail.equals("Atendente")){
-                                getMenuInflater().inflate(R.menu.menu_atend, menu1);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
+        getMenuInflater().inflate(R.menu.menu_admin, menu);
         return true;
     }
 
@@ -90,10 +70,10 @@ public class PrincipalActivity extends AppCompatActivity {
         int id= item.getItemId();
         if(id == R.id.action_add_usuario){
            startActivity(new Intent(PrincipalActivity.this, CadastroUsuarioActivity.class));
-        }else if(id == R.id.action_sair_admin || id == R.id.action_sair_atend){
+        }else if(id == R.id.action_sair_admin){
             deslogarUsuario();
-        }else if(id == R.id.action_cad_foto_perfil_atend){
-            uploadFotoPerfil();
+        }else if(id == R.id.action_cardapio){
+            startActivity(new Intent(PrincipalActivity.this, CardapioActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -108,6 +88,10 @@ public class PrincipalActivity extends AppCompatActivity {
     private void uploadFotoPerfil(){
         startActivity(new Intent(PrincipalActivity.this, UploadFotoActivity.class));
         finish();
+    }
+
+    private void abrirTelaCadastroProduto(){
+
     }
 }
 
