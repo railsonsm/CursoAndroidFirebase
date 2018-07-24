@@ -2,6 +2,8 @@ package firebase.curso.br.cursoandroidfirebase.activitys;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -20,10 +22,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 import firebase.curso.br.cursoandroidfirebase.R;
+import firebase.curso.br.cursoandroidfirebase.classes.Cardapio;
 import firebase.curso.br.cursoandroidfirebase.classes.Usuario;
 import firebase.curso.br.cursoandroidfirebase.dao.ConfiguracaoFirebase;
 import firebase.curso.br.cursoandroidfirebase.helper.Preferencias;
@@ -35,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     private BootstrapButton btnLogin;
     private Usuario usuario;
     private TextView txtAbreCadastro;
+    private TextView txtRecuperarSenha;
+    private DatabaseReference databaseReference;
+    private android.support.v7.app.AlertDialog aleta;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +55,23 @@ public class MainActivity extends AppCompatActivity {
 
         permissao();
         txtAbreCadastro = (TextView) findViewById(R.id.txtAbreCadastro);
+        txtRecuperarSenha = (TextView) findViewById(R.id.txtRecuperarSenha);
         edtEmail = (BootstrapEditText) findViewById(R.id.editEmail);
         edtSenha = (BootstrapEditText) findViewById(R.id.editSenha);
         btnLogin = (BootstrapButton) findViewById(R.id.btnLogin);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        autenticacao = FirebaseAuth.getInstance();
+
+        final EditText editTextEmail = new EditText(MainActivity.this);
+        editTextEmail.setHint("exemplo@exemplo.com");
+
         if(usuarioLogado()){
-            startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+            String email = autenticacao.getCurrentUser().getEmail().toLowerCase();
+            abrirTelaPrincipal(email);
+            finish();
+           // startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
         }else{
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,6 +98,55 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        txtRecuperarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "oi", Toast.LENGTH_SHORT).show();
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+            builder.setCancelable(false);
+            builder.setTitle("Recuperar senha");
+            builder.setMessage("Informe o seu email");
+            builder.setView(editTextEmail);
+            if(!editTextEmail.getText().equals("")){
+                builder.setPositiveButton("Recuperar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        autenticacao = FirebaseAuth.getInstance();
+                        String emailRecuperar = editTextEmail.getText().toString();
+                        autenticacao.sendPasswordResetEmail(emailRecuperar).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(MainActivity.this, "Em instante voce receberar um email", Toast.LENGTH_SHORT).show();
+                                    Intent intent = getIntent();
+                                    finish();
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(MainActivity.this, "Falha ao enviar email", Toast.LENGTH_SHORT).show();
+                                    Intent intent = getIntent();
+                                    finish();
+                                    startActivity(intent);
+                                }
+                                aleta = builder.create();
+                                aleta.show();
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+            }else{
+                Toast.makeText(MainActivity.this, "Preencha o campo email", Toast.LENGTH_SHORT).show();
+            }
+            }
+        });
     }
 
     private void validarLogin(){
@@ -85,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            abrirTelaPrincipal();
+                            abrirTelaPrincipal(usuario.getEmail().toString());
                             Preferencias preferencias = new Preferencias(MainActivity.this);
                             preferencias.salvarUsuarioPreferencias(usuario.getEmail(), usuario.getSenha());
                             Toast.makeText(MainActivity.this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show();
@@ -96,9 +168,31 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void abrirTelaPrincipal(){
-        finish();
-        startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+    private void abrirTelaPrincipal(String emailUsuario){
+        String email = autenticacao.getCurrentUser().getEmail().toLowerCase();
+        databaseReference.child("usuarios").orderByChild("email").equalTo(email.toString()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                  String tipoUsuarioEmail = postSnapshot.child("tipoUsuario").getValue().toString();
+                  if(tipoUsuarioEmail.equals("Administrador")){
+                        startActivity(new Intent(MainActivity.this, PrincipalActivity.class));
+                        finish();
+                  }else if(tipoUsuarioEmail.equals("Atendente")){
+                      startActivity(new Intent(MainActivity.this, PrincipalActivityAtendente.class));
+                      finish();
+                  }else if(tipoUsuarioEmail.equals("Comum")){
+                      startActivity(new Intent(MainActivity.this, PrincipalActivityComum.class));
+                      finish();
+                  }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public boolean usuarioLogado(){

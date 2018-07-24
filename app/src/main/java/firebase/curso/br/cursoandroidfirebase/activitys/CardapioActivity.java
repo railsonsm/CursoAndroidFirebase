@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +28,7 @@ public class CardapioActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private Cardapio todosCardapios;
     private LinearLayoutManager linearLayoutManagerTodosProdutos;
-
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -62,6 +62,15 @@
                 app:roundedCorners="true"
                 />
             <TextView
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:id="@+id/txtRecuperarSenha"
+                android:text="Esqueceu a senha? Clique aqui"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10px"/>
+            <TextView
                 android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:id="@+id/txtAbreCadastro"

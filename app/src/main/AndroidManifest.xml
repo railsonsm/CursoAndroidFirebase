@@ -27,7 +27,9 @@
         <activity android:name=".activitys.PrincipalActivity" />
         <activity android:name=".activitys.UploadFotoActivity" />
         <activity android:name=".activitys.CadastroUsuarioComumActivity" />
-        <activity android:name=".activitys.CardapioActivity"></activity>
+        <activity android:name=".activitys.CardapioActivity" />
+        <activity android:name=".activitys.PrincipalActivityComum" />
+        <activity android:name=".activitys.PrincipalActivityAtendente"></activity>
     </application>
 
 </manifest>

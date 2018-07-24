@@ -42,6 +42,7 @@ public class UploadFotoActivity extends AppCompatActivity {
     private String emailUsuarioLogado;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
